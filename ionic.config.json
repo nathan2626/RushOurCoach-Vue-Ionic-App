@@ -1,0 +1,7 @@
+{
+  "name": "RushOurCoach",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "vue"
+}
