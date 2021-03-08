@@ -19,7 +19,7 @@ const routes = [
     component: Reservation
   },
   {
-    path: '/reservation/annulation',
+    path: '/reservation/annulation/:token',
     name: 'Annulationn',
     component: Annulation
   }

@@ -1,21 +1,7 @@
 <template>
   <ion-page>
-    <ion-header :translucent="true" class="ion-no-border">
-      <ion-toolbar>
 
-        <ion-buttons slot="start">
-          <ion-button>
-            <ion-icon slot="end" :icon="gridOutline"></ion-icon>
-          </ion-button>
-        </ion-buttons>
-        <ion-buttons slot="end">
-          <ion-button>
-            <ion-icon slot="start" :icon="search"></ion-icon>
-          </ion-button>
-        </ion-buttons>
-
-      </ion-toolbar>
-    </ion-header>
+    <Menu />
 
     <ion-content :fullscreen="true">
       <div id="container">
@@ -137,13 +123,15 @@
 </template>
 
 <script>
-import { IonContent, IonSegment, IonSegmentButton, IonLabel, IonSlides, IonSlide, IonGrid, IonRow, IonCol, IonBadge,  IonButtons, IonButton, IonIcon, IonHeader, IonPage, IonToolbar } from '@ionic/vue';
-import { search, gridOutline, star } from 'ionicons/icons';
+import { IonContent, IonSegment, IonSegmentButton, IonLabel, IonSlides, IonSlide, IonGrid, IonRow, IonCol, IonBadge, IonIcon, IonPage } from '@ionic/vue';
+import Menu from '../components/MenuApp.vue'
+import { star } from 'ionicons/icons';
 import { defineComponent } from 'vue';
 
 export default defineComponent({
   name: 'Home',
   components: {
+    Menu,
     IonContent,
     IonSlides,
     IonSlide,
@@ -154,12 +142,8 @@ export default defineComponent({
     IonBadge,
     IonSegmentButton,
     IonLabel,
-    IonButtons,
-    IonButton,
     IonIcon,
-    IonHeader,
-    IonPage,
-    IonToolbar
+    IonPage
   },
   setup() {
     const slideOpts = {
@@ -168,8 +152,6 @@ export default defineComponent({
       spaceBetween: -100
     };
     return {
-      search,
-      gridOutline,
       star,
       slideOpts
     }
