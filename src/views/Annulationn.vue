@@ -20,24 +20,12 @@
     <ion-content :fullscreen="true">
       <div id="container">
         <!-- Content -->
-        <h1>Réservation</h1>
+        <h1>Annulation</h1>
         <div class="ion-padding">
 
           <form action="" class="ion-padding">
 
             <input type="hidden" name="token">
-
-            <div class="wrap-input">
-              <input placeholder="Date" class="input" type="date" id="date_select" name="date_select" required>
-            </div>
-
-            <div class="wrap-input">
-              <input placeholder="Heure" type="time" id="hour_select" class="input" name="hour_select" min="09:00" max="18:00" step="3600" required>
-            </div>
-
-            <div class="wrap-input">
-              <input placeholder="Email" type="email" class="input" id="email" name="email" required>
-            </div>
 
             <div style="display: flex; justify-content: space-around; align-items: center">
               <label class="label" for="cgu">
@@ -49,7 +37,7 @@
 
             <div class="container-form-btn ion-padding-top">
               <button class="form-btn custom-font">
-                Réserver
+                Annuler
               </button>
             </div>
 
@@ -67,7 +55,7 @@ import { search, gridOutline } from 'ionicons/icons';
 import { defineComponent } from 'vue';
 
 export default defineComponent({
-  name: 'Reservation',
+  name: 'Annulation',
   components: {
     IonPage,
     IonHeader,

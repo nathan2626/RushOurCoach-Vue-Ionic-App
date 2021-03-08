@@ -1,6 +1,7 @@
 import { createRouter, createWebHistory } from '@ionic/vue-router';
 import Home from '../views/Home.vue'
 import Reservation from '../views/Reservation.vue'
+import Annulation from '../views/Annulationn.vue'
 
 const routes = [
   {
@@ -16,6 +17,11 @@ const routes = [
     path: '/reservation',
     name: 'Reservation',
     component: Reservation
+  },
+  {
+    path: '/reservation/annulation',
+    name: 'Annulationn',
+    component: Annulation
   }
 ]
 
