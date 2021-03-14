@@ -9,7 +9,7 @@
         <label class="label" for="cgu">
           J'ai lu et accepté les <a href="#">conditions d'utilisation</a>
         </label>
-        <input class="" type="checkbox" checked id="cgu" name="cgu" required>
+        <input class="" v-model="cguInput" type="checkbox" checked id="cgu" name="cgu" required>
       </div>
 
 
@@ -21,6 +21,10 @@
 
     </form>
 
+    <div v-if="displayRecap === true " class=" ion-padding-top">
+      <p>{{ this.dateWhenSend }}</p>
+      <p>{{ this.hourWhenSend }}</p>
+    </div>
 
     <div v-if="displayButtonReservation === true " class="container-form-btn ion-padding-top">
       <a class="form-btn noDecoration custom-font" href="/reservation">
@@ -41,10 +45,32 @@ export default  {
     return {
       displayButtonAnnulation: true,
       displayButtonReservation: false,
+      displayRecap: false,
+      hourWhenSend: "",
+      dateWhenSend: "",
+      tokenWhenSend: "",
+      cguInput: true
     }
   },
   components: {
 
+  },
+  mounted() {
+    this.$bus.on('hourWhenSend', (hourWhenSend) => {
+      this.hourWhenSend = hourWhenSend;
+      console.log('aaaaaa' + this.hourWhenSend);
+    })
+    this.$bus.on('dateWhenSend', (dateWhenSend) => {
+      this.dateWhenSend = dateWhenSend;
+      console.log(this.dateWhenSend)
+    })
+    this.$bus.on('tokenWhenSend', (tokenWhenSend) => {
+      this.tokenWhenSend = tokenWhenSend;
+      console.log(this.tokenWhenSend)
+    })
+    if(this.tokenWhenSend === this.$route.params.token) {
+      this.displayRecap = true;
+    }
   },
   methods: {
     displayMessage(msg, type){
@@ -58,7 +84,7 @@ export default  {
     sendAnnulation() {
 
       const annulation = {
-        cgu: true,
+        cgu: `${this.cguInput}`,
         token: `${this.$route.params.token}`
       };
 

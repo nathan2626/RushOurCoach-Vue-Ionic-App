@@ -6,22 +6,22 @@
       <input type="hidden" name="token">
 
       <div class="wrap-input">
-        <input placeholder="Date" v-model="dateInput" class="input" type="date" id="date_select" name="date_select" >
+        <input required placeholder="Date" v-model="dateInput" :min='today' class="input" type="date" id="date_select" name="date_select" >
       </div>
 
       <div class="wrap-input">
-        <input placeholder="Heure" v-model="hourInput"  type="time" id="hour_select" class="input" name="hour_select" min="09:00" max="18:00" step="3600" >
+        <input required placeholder="Heure" v-model="hourInput"  type="time" id="hour_select" class="input" name="hour_select" min="09:00" max="18:00" step="3600" >
       </div>
 
       <div class="wrap-input">
-        <input placeholder="Email" v-model="emailInput"  type="email" class="input" id="email" name="email" >
+        <input required placeholder="Email" v-model="emailInput"  type="email" class="input" id="email" name="email" >
       </div>
 
       <div style="display: flex; justify-content: space-around; align-items: center">
         <label class="label" for="cgu">
           J'ai lu et accepté les <a href="#">conditions d'utilisation</a>
         </label>
-        <input class="" v-model="cguInput" type="checkbox" checked id="cgu" name="cgu" >
+        <input required class="" v-model="cguInput" type="checkbox" checked id="cgu" name="cgu" >
       </div>
 
 
@@ -52,8 +52,11 @@ export default  {
   name: 'Reservation',
   data () {
     return {
+      today: "",
       resultError: "",
       tokenWhenSend: "",
+      hourWhenSend: "",
+      dateWhenSend: "",
       displayButton: true,
       resultStatus: "",
       emailInput: "",
@@ -65,6 +68,16 @@ export default  {
   },
   components: {
 
+  },
+  mounted () {
+    let today = new Date();
+    let dd = String(today.getDate()).padStart(2, '0');
+    let mm = String(today.getMonth() + 1).padStart(2, '0'); //January is 0!
+    let yyyy = today.getFullYear();
+
+    today = yyyy + '-' + mm + '-' + dd ;
+    this.today = today;
+    console.log(this.today);
   },
   methods: {
     displayMessage(msg, type){
@@ -99,6 +112,17 @@ export default  {
             this.displayMessage(`${this.resultStatus.status}`, "success")
             this.tokenWhenSend = this.resultStatus.token;
             this.displayButton = false;
+
+            //bababa
+            this.hourWhenSend = this.resultStatus.hour;
+            this.dateWhenSend = this.resultStatus.date;
+
+            this.$bus.emit("hourWhenSend", this.hourWhenSend);
+            this.$bus.emit("dateWhenSend", this.dateWhenSend);
+            this.$bus.emit("tokenWhenSend", this.tokenWhenSend);
+
+            console.log('Ici',  this.$bus.emit("hourWhenSend", this.hourWhenSend), this.$bus.emit("dateWhenSend", this.dateWhenSend), this.$bus.emit("tokenWhenSend", this.tokenWhenSend) )
+            console.log('La', this.hourWhenSend, this.dateWhenSend, this.tokenWhenSend)
 
             console.log(response.data)
           })
