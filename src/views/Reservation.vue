@@ -44,6 +44,7 @@ export default defineComponent({
 h1 {
   text-align: center;
   margin-top: 5rem;
+  font-size: 2rem;
 }
 
 </style>

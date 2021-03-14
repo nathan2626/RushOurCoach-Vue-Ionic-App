@@ -1,7 +1,7 @@
 <template>
 
   <div class="ion-padding">
-    <form @submit.prevent="sendReservation" method="" action="" class="ion-padding">
+    <form v-if="displayButton === true" @submit.prevent="sendReservation" method="" action="" class="ion-padding">
 
       <input type="hidden" name="token">
 
@@ -25,18 +25,23 @@
       </div>
 
 
-      <div v-if="displayButton === true" class="container-form-btn ion-padding-top">
+      <div class="container-form-btn ion-padding-top">
         <button class="form-btn custom-font">
           Réserver
         </button>
       </div>
-      <div v-else style="display: none;">
-      </div>
 
     </form>
+    <div v-else style="display: none;">
+    </div>
 
+    <div v-if="tokenWhenSend">
+      <h1 style="font-size: 1.5rem;">Récapitulation de votre réservation</h1>
+      <p class="ion-padding-top"> Date : {{ dateWhenSend }}</p>
+      <p> Heure : {{ hourWhenSend }}</p>
+    </div>
     <div v-if="tokenWhenSend" class="container-form-btn ion-padding-top">
-      <a class="form-btn noDecoration custom-font" :href="'/reservation/annulation/'+ tokenWhenSend">
+      <a class="form-btn noDecoration custom-font ion-padding-top" :href="'/reservation/annulation/'+ tokenWhenSend">
         Annuler
       </a>
     </div>
@@ -113,7 +118,7 @@ export default  {
             this.tokenWhenSend = this.resultStatus.token;
             this.displayButton = false;
 
-            //bababa
+            //tentative :)
             this.hourWhenSend = this.resultStatus.hour;
             this.dateWhenSend = this.resultStatus.date;
 
@@ -157,6 +162,16 @@ export default  {
   border-radius: 20px;
   margin-bottom: 26px;
   box-shadow: 0 10px 30px 0 rgba(57,71,82, 0.12);
+}
+
+p {
+  text-align: center;
+  margin-bottom: -1em;
+}
+
+h1 {
+  text-align: center;
+  padding-top: 1rem;
 }
 
 .input {
