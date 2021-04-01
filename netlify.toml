@@ -1,4 +1,4 @@
 [[redirects]]
-  from = "/Reservation"
-  to = "/reservation.html"
+  from = "/*"
+  to = "/index.html"
   status = 200
