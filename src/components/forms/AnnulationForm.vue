@@ -90,7 +90,7 @@ export default  {
 
       axios
           .post(
-              `http://rushourcoach.herokuapp.com/api/reservation/annulation/${this.$route.params.token}`, annulation
+              `https://rushourcoach.herokuapp.com/api/reservation/annulation/${this.$route.params.token}`, annulation
           )
           .then((response) => {
             console.log(this.$route.params.token)

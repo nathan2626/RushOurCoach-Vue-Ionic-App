@@ -108,7 +108,7 @@ export default  {
 
       axios
           .post(
-              `http://rushourcoach.herokuapp.com/api/reservation`, reservation
+              `https://rushourcoach.herokuapp.com/api/reservation`, reservation
           )
           .then((response) => {
             this.resultStatus = response.data;
